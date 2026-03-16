@@ -7,10 +7,10 @@ Search for listeners, view their listening habits, and leave reviews of your fav
 ## Screenshots
 
 ### Modern & Responsive UI
-![Landing Page] (./public/landing-page.png)
+![Landing Page](./public/landing-page.png)
 
 ### Visualise Your Listening Habits
-![Listening History] (./public/top-albums-page.png)
+![Listening History](./public/top-albums-page.png)
 
 ## Features
 
