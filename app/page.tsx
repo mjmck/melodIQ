@@ -12,9 +12,12 @@ export default async function Home() {
 
       {/* Hero */}
       <div className="flex-1 flex flex-col items-center justify-center px-6 text-center">
-        {user && (<h1 className="text-5xl md:text-7xl font-bold text-zinc-900 dark:text-white tracking-tight max-w-3xl leading-tight">
+        {user ? (<h1 className="text-5xl md:text-7xl font-bold text-zinc-900 dark:text-white tracking-tight max-w-3xl leading-tight">
           Welcome back, <span className="font-semibold">{user.name}</span>
-        </h1>)}
+        </h1>) :
+          <h1 className="text-5xl md:text-7xl font-bold text-zinc-900 dark:text-white tracking-tight max-w-3xl leading-tight">
+            <span className="font-semibold">Welcome To MelodIQ</span>
+          </h1>}
 
         <p className="mt-6 text-lg md:text-xl text-zinc-600 dark:text-zinc-400 max-w-xl">
           Search for a user to see what they're scrobbling!
@@ -56,8 +59,8 @@ export default async function Home() {
             },
             {
               icon: Users,
-              title: "Compare Tastes",
-              desc: "Discover overlaps and differences in music preferences.",
+              title: "Share Your Thoughts",
+              desc: "Write and read detailed reviews of various music releases",
             },
           ].map((feature) => (
             <div

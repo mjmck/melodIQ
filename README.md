@@ -1,11 +1,16 @@
 # MelodIQ
 
-MelodIQ is a web application that lets users explore and analyse music listening habits using data from Last.fm.
-Users can search for listeners, view their profiles, and see their most played tracks, albums, and artists.
-
-The goal of MelodIQ is to provide a clean, fast interface for discovering listening patterns and comparing music taste.
+Search for listeners, view their listening habits, and leave reviews of your favourite tracks and albums!
 
 ---
+
+## Screenshots
+
+### Modern & Responsive UI
+![Landing Page] (./public/landing-page.png)
+
+### Visualise Your Listening Habits
+![Listening History] (./public/top-albums-page.png)
 
 ## Features
 
@@ -25,9 +30,9 @@ Each profile displays curated listening statistics including:
 * Top albums
 * Top artists
 
-### Fast and Modern UI
+### Review Your Favourite Music
 
-MelodIQ is built using modern React architecture with server components and optimized data fetching.
+Post, view, and interact with detailed review's on any music release.
 
 ---
 
