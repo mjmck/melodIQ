@@ -1,4 +1,4 @@
-import { getCurrentUser } from "@/lib/auth";
+import { getCurrentUser } from "@/lib/user";
 import LoginButton from "./LoginButton";
 import ProfilePicture from "./ProfilePicture";
 import SearchBar from "./SearchBar";

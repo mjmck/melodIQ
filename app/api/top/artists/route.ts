@@ -1,15 +1,32 @@
-import { getCurrentUserTopArtists } from "@/lib/user";
+import { getCurrentUser } from "@/lib/user";
+import { NextResponse } from "next/server";
+import { User } from "@/app/generated/prisma/client";
 
-export async function GET(request: Request) {
-    const cookieHeader = request.headers.get("cookie");
-    const sessionMatch = cookieHeader?.match(/(?:^|;\s*)session=([^;]*)/);
-    const cookie = sessionMatch?.[1];
-    if (!cookie) return new Response("Not signed in", { status: 401 });
+export async function GET(request: Request, user: User) {
 
-    try {
-        const topArtists = await getCurrentUserTopArtists(cookie);
-        return new Response(JSON.stringify(topArtists), { status: 200 });
-    } catch (err) {
-        return new Response(JSON.stringify({ error: (err as Error).message }), { status: 500 });
+    if (!user) {
+        return NextResponse.json({ error: "Not signed in" }, { status: 401 });
     }
+
+    const key = process.env.API_KEY!;
+
+    const params = new URLSearchParams({
+        method: "user.getTopArtists",
+        api_key: key,
+        user: user.name,
+        limit: "10",
+        format: "json",
+    });
+
+    const res = await fetch("https://ws.audioscrobbler.com/2.0/", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: params,
+    });
+
+    const data = await res.json();
+
+    return NextResponse.json(data);
 }

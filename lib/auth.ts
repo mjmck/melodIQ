@@ -15,8 +15,3 @@ export async function getCurrentSession() {
     return session;
 }
 
-export async function getCurrentUser() {
-    const session = await getCurrentSession();
-
-    return session?.user ?? null;
-}

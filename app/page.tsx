@@ -1,4 +1,4 @@
-import { getCurrentUser } from "@/lib/auth";
+import { getCurrentUser } from "@/lib/user";
 import prisma from "@/lib/prisma";
 import Link from "next/link";
 import { Button } from "./components/Button";

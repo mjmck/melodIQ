@@ -1,9 +1,8 @@
-import { getCurrentUser } from "@/lib/auth";
+import { getCurrentUser } from "@/lib/user";
 import { NextResponse } from "next/server";
 import { User } from "@/app/generated/prisma/client";
 
 export async function GET(request: Request) {
-    console.log("Here!");
     const user = await getCurrentUser();
 
     if (!user) {

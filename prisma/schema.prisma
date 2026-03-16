@@ -13,17 +13,60 @@ datasource db {
 }
 
 model User {
-  id       Int       @id @default(autoincrement())
-  name     String    @unique
-  sessions Session[]
-  pfp      String?
-  sessionKey    String    @unique
+  id        Int       @id @default(autoincrement())
+  name      String    @unique
+  pfp       String?
+  sessionKey String   @unique
+  sessions  Session[]
+  reviews   Review[]
+  applauds  ReviewApplaud[]
 }
 
 model Session {
   id        Int      @id @default(autoincrement())
-  userId    Int      
+  userId    Int
   key       String   @unique
   createdAt DateTime @default(now())
   user      User     @relation(fields: [userId], references: [id])
+}
+
+model Artist {
+  id       Int       @id @default(autoincrement())
+  name     String
+  releases Release[]
+}
+
+enum releaseType {
+  track
+  album
+}
+
+model Release {
+  id          Int       @id @default(autoincrement())
+  releaseType releaseType
+  name        String
+  artistId    Int
+  artist      Artist    @relation(fields: [artistId], references: [id])
+  reviews     Review[]
+}
+
+model Review {
+  id        Int             @id @default(autoincrement())
+  authorID  Int
+  author    User            @relation(fields: [authorID], references: [id])
+  releaseId Int
+  release   Release         @relation(fields: [releaseId], references: [id])
+  content   String
+  createdAt DateTime        @default(now())
+  applauds  ReviewApplaud[]
+}
+
+model ReviewApplaud {
+  id       Int    @id @default(autoincrement())
+  userId   Int
+  reviewId Int
+  user     User   @relation(fields: [userId], references: [id])
+  review   Review @relation(fields: [reviewId], references: [id])
+
+  @@unique([userId, reviewId])
 }

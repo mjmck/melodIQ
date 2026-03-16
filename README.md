@@ -1,36 +1,101 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MelodIQ
 
-## Getting Started
+MelodIQ is a web application that lets users explore and analyse music listening habits using data from Last.fm.
+Users can search for listeners, view their profiles, and see their most played tracks, albums, and artists.
 
-First, run the development server:
+The goal of MelodIQ is to provide a clean, fast interface for discovering listening patterns and comparing music taste.
+
+---
+
+## Features
+
+### Search Users
+
+Find any Last.fm user and explore their listening activity.
+
+### Top Tracks, Albums, and Artists
+
+View a user's most played music ranked by play count.
+
+### User Profiles
+
+Each profile displays curated listening statistics including:
+
+* Top tracks
+* Top albums
+* Top artists
+
+### Fast and Modern UI
+
+MelodIQ is built using modern React architecture with server components and optimized data fetching.
+
+---
+
+## Tech Stack
+
+**Framework**
+
+* Next.js (App Router)
+
+**Language**
+
+* TypeScript
+
+**Styling**
+
+* Tailwind CSS
+
+**Database / ORM**
+
+* Prisma
+
+**Icons**
+
+* Lucide React
+
+**APIs**
+
+* Last.fm API
+
+---
+
+## Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/mjmck/melodIQ.git
+cd melodIQ
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Create a `.env` file:
+
+```env
+DATABASE_URL=your_database_url
+API_SECRET=your_lastfm_api_secret
+API_KEY=your_lastfm_api_key
+```
+
+Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The app will be available at:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+http://localhost:3000
+```
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Author
 
-## Learn More
+Created as a personal project exploring modern full-stack development with Next.js and music data analysis.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
