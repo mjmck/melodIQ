@@ -1,5 +1,4 @@
 import { getCurrentUser } from "@/lib/user";
-import prisma from "@/lib/prisma";
 import Link from "next/link";
 import { Button } from "./components/Button";
 import { Music, Search, Users } from "lucide-react";
@@ -24,11 +23,9 @@ export default async function Home() {
         </p>
 
         <div className="mt-10 flex flex-col sm:flex-row gap-4">
-          <a href="/profile">
-            <Button size="lg" className="cursor-pointer rounded-full px-8 text-base">
-              View Your Profile
-            </Button>
-          </a>
+          <Button asChild size="lg" className="cursor-pointer rounded-full px-8 text-base">
+            <Link href="/profile">View Your Profile</Link>
+          </Button>
 
           <Link href="/search">
             <Button

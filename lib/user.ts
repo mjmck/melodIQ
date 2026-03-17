@@ -1,8 +1,14 @@
 import prisma from "@/lib/prisma";
-import { fetchTopArtists, fetchTopAlbums, fetchTopTracks } from "@/lib/lastfm";
+import { fetchTopArtists, fetchTopAlbums, fetchTopTracks, type LastFmTopPeriod } from "@/lib/lastfm";
 import { getCurrentSession } from "./auth";
+import { cache } from "react";
 
-export async function getCurrentUserTop(appSessionKey: string, topic: string, limit: number | null) {
+export async function getCurrentUserTop(
+    appSessionKey: string,
+    topic: "tracks" | "albums" | "artists",
+    limit: number | null,
+    period: LastFmTopPeriod = "overall",
+) {
     const appSession = await prisma.session.findUnique({
         where: { key: appSessionKey },
         include: { user: true },
@@ -17,14 +23,13 @@ export async function getCurrentUserTop(appSessionKey: string, topic: string, li
     const howMany = limit ?? 10;
 
     if (topic == "tracks") {
-        const top = await fetchTopTracks(user, howMany, false);
+        const top = await fetchTopTracks(user, howMany, false, period);
         return top;
     } else if (topic == "albums") {
-        const top = await fetchTopAlbums(user, howMany, false);
+        const top = await fetchTopAlbums(user, howMany, false, period);
         return top;
     } else if (topic == "artists") {
-        const top = await fetchTopArtists(user, howMany, false);
-        console.log(top);
+        const top = await fetchTopArtists(user, howMany, false, period);
         return top;
     } else {
         throw new Error("Invalid topic")
@@ -33,11 +38,11 @@ export async function getCurrentUserTop(appSessionKey: string, topic: string, li
 
 }
 
-export async function getCurrentUser() {
+export const getCurrentUser = cache(async () => {
     const session = await getCurrentSession();
 
     return session?.user ?? null;
-}
+});
 
 export async function getUser(name: string) {
     // Validate the name to make sure it's not undefined or empty

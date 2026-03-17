@@ -12,7 +12,7 @@ export default function SearchBar({ placeholder = "Search..." }: SearchBarProps)
     const [query, setQuery] = useState("");
     const router = useRouter();
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (query.trim() === "") return;
 
@@ -29,10 +29,13 @@ export default function SearchBar({ placeholder = "Search..." }: SearchBarProps)
                 placeholder={placeholder}
                 className="border rounded-full px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
-            <FaMagnifyingGlass
-                className="cursor-pointer"
-                onClick={handleSubmit as unknown as React.MouseEventHandler<SVGElement>}
-            />
+            <button
+                type="submit"
+                className="p-2 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+                aria-label="Search"
+            >
+                <FaMagnifyingGlass />
+            </button>
         </form>
     );
 }

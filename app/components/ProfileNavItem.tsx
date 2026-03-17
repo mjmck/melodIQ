@@ -1,4 +1,3 @@
-import { getCurrentUser } from "@/lib/user";
 import Link from "next/link";
 
 interface Props {
@@ -6,9 +5,7 @@ interface Props {
     address: string
 }
 
-export default async function ProfileNavItem({ name, address }: Props) {
-    const user = await getCurrentUser();
-
+export default function ProfileNavItem({ name, address }: Props) {
     return (
         <Link href={address} className="font-semibold">
             {name}

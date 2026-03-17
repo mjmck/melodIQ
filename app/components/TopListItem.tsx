@@ -3,13 +3,14 @@ import imgDefault from '@/public/defaultPFP.png'
 
 interface Info {
     name: string
-    playcount: number
+    playcount: number | string
     url: string
     artist: string
     img: string
 }
 
 export default function TopListItem({ name, playcount, url, artist, img }: Info) {
+    const plays = typeof playcount === "string" ? Number(playcount) : playcount;
     return (
         <a
             href={url}
@@ -23,7 +24,8 @@ export default function TopListItem({ name, playcount, url, artist, img }: Info)
                         <Image
                             src={img || imgDefault}
                             alt={name}
-                            fill
+                            width={64}
+                            height={64}
                             className="object-cover transition-transform duration-300 group-hover:scale-110"
                         />
                     </div>
@@ -32,7 +34,7 @@ export default function TopListItem({ name, playcount, url, artist, img }: Info)
                             {name}
                         </h3>
                         <p className="text-sm text-muted-foreground">
-                            {playcount.toLocaleString()} plays
+                            {Number.isFinite(plays) ? plays.toLocaleString() : playcount} plays
                         </p>
                     </div>
 

@@ -4,6 +4,7 @@ import ProfilePicture from "./ProfilePicture";
 import SearchBar from "./SearchBar";
 import defaultPFP from '@/public/defaultPFP.png';
 import LogoutButton from "./LogoutButton";
+import Link from "next/link";
 
 export default async function Navbar() {
     const user = await getCurrentUser();
@@ -15,9 +16,9 @@ export default async function Navbar() {
             <SearchBar />
             {user ? (
                 <>
-                    <a href="/profile">
+                    <Link href="/profile">
                         <ProfilePicture src={imageSrc} size={40} alt={user.name} />
-                    </a>
+                    </Link>
                     <LogoutButton />
                 </>
 

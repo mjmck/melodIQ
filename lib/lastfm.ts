@@ -1,16 +1,15 @@
-// lib/lastfm.ts
 import { User } from "@/app/generated/prisma/client";
-import { getCurrentSession } from "./auth";
 
 const API_KEY = process.env.API_KEY!;
 
-/**
- * @param user
- * @param limit 
- * @param usePrivate
- */
+export type LastFmTopPeriod = "overall" | "7day" | "1month" | "3month" | "6month" | "12month";
 
-export async function fetchTopTracks(user: User, limit = 10, usePrivate = false) {
+export async function fetchTopTracks(
+    user: User,
+    limit = 10,
+    usePrivate = false,
+    period: LastFmTopPeriod = "overall",
+) {
     const params = new URLSearchParams({
         method: "user.getTopTracks",
         api_key: API_KEY,
@@ -20,6 +19,7 @@ export async function fetchTopTracks(user: User, limit = 10, usePrivate = false)
 
     // For public data, just use username
     params.set("user", user.name);
+    params.set("period", period);
 
     // If private data, include session key (Last.fm sk)
     if (usePrivate) {
@@ -44,7 +44,12 @@ export async function fetchTopTracks(user: User, limit = 10, usePrivate = false)
     return data;
 }
 
-export async function fetchTopAlbums(user: User, limit = 10, usePrivate = false) {
+export async function fetchTopAlbums(
+    user: User,
+    limit = 10,
+    usePrivate = false,
+    period: LastFmTopPeriod = "overall",
+) {
     const params = new URLSearchParams({
         method: "user.getTopAlbums",
         api_key: API_KEY,
@@ -54,6 +59,7 @@ export async function fetchTopAlbums(user: User, limit = 10, usePrivate = false)
 
     // For public data, just use username
     params.set("user", user.name);
+    params.set("period", period);
 
     // If private data, include session key (Last.fm sk)
     if (usePrivate) {
@@ -78,7 +84,12 @@ export async function fetchTopAlbums(user: User, limit = 10, usePrivate = false)
     return data;
 }
 
-export async function fetchTopArtists(user: User, limit = 10, usePrivate = false) {
+export async function fetchTopArtists(
+    user: User,
+    limit = 10,
+    usePrivate = false,
+    period: LastFmTopPeriod = "overall",
+) {
     const params = new URLSearchParams({
         method: "user.getTopArtists",
         api_key: API_KEY,
@@ -88,6 +99,7 @@ export async function fetchTopArtists(user: User, limit = 10, usePrivate = false
 
     // For public data, just use username
     params.set("user", user.name);
+    params.set("period", period);
 
     // If private data, include session key (Last.fm sk)
     if (usePrivate) {

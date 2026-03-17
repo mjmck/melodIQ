@@ -38,7 +38,68 @@ body {
   }
 }
 
-/* Define utility class for animation */
 .animate-fadeInUp {
   animation: fadeInUp 0.4s ease-out forwards;
+}
+
+.rc-slider {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 6px 10px;
+  box-sizing: border-box;
+}
+
+.rc-slider-mark-text {
+  white-space: nowrap;
+  font-size: 0.75rem;
+  color: rgba(113, 113, 122, 1); /* zinc-500-ish */
+}
+
+.rc-slider-rail {
+  background-color: rgba(113, 113, 122, 0.35); /* zinc-500-ish */
+  height: 6px;
+  border-radius: 9999px;
+}
+
+.rc-slider-track {
+  background-color: rgb(225, 29, 72); /* rose-600 */
+  height: 6px;
+  border-radius: 9999px;
+}
+
+.rc-slider-handle {
+  width: 16px;
+  height: 16px;
+  margin-top: -5px;
+  background-color: var(--background);
+  border: 2px solid rgb(225, 29, 72);
+  opacity: 1;
+}
+
+.rc-slider-handle:focus-visible {
+  box-shadow: 0 0 0 4px rgba(225, 29, 72, 0.25);
+  outline: none;
+}
+
+.rc-slider-dot {
+  width: 8px;
+  height: 8px;
+  margin-top: -1px;
+  border: 2px solid rgba(113, 113, 122, 0.5);
+  background-color: var(--background);
+}
+
+.rc-slider-dot-active {
+  border-color: rgb(225, 29, 72);
+}
+
+@media (prefers-color-scheme: dark) {
+  .rc-slider-rail {
+    background-color: rgba(161, 161, 170, 0.25); /* zinc-400-ish */
+  }
+
+  .rc-slider-mark-text {
+    color: rgba(161, 161, 170, 1); /* zinc-400-ish */
+  }
 }
